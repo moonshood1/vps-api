@@ -18,10 +18,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/send-email-to-vps", async (req, res) => {
-  const { from, to, subject, text } = req.body;
+  const { from, subject, text } = req.body;
 
   try {
-    await sendEmail({ from, to, subject, text });
+    console.log({
+      from,
+      subject,
+      text,
+    });
+
+    await sendEmail({ from, subject, text });
 
     res.status(200).json({ message: "Email envoyé avec succès !" });
   } catch (error) {
