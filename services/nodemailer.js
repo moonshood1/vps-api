@@ -3,8 +3,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  host: "mail.vpservices.ci",
-  port: 587,
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
   secure: false,
   auth: {
     user: process.env.EMAIL_USER,
@@ -30,7 +30,7 @@ async function sendEmail({ from, subject, text }) {
       }
     });
 
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
       from,
       to: "info@vpservices.ci",
       subject,
