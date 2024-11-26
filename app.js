@@ -21,12 +21,6 @@ app.post("/send-email-to-vps", async (req, res) => {
   const { from, subject, text } = req.body;
 
   try {
-    console.log({
-      from,
-      subject,
-      text,
-    });
-
     await sendEmail({ from, subject, text });
 
     res.status(200).json({ message: "Email envoyé avec succès !" });
